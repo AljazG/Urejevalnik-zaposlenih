@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, NgModule, OnInit} from '@angular/core';
 import {EmployeeService} from '../../services/employee.service';
 
 @Component({
@@ -6,6 +6,7 @@ import {EmployeeService} from '../../services/employee.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
+
 export class AppComponent implements OnInit{
   title = 'urejevalnik-zaposlenih';
   constructor(private employeeService: EmployeeService){}
