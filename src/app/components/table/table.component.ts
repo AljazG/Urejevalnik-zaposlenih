@@ -15,6 +15,7 @@ export class TableComponent implements AfterViewInit{
   displayedColumns: string[] = [ 'name', 'salary', 'age'];
   employees: Employee[];
   dataSource = new MatTableDataSource<Employee>([]);
+  employeesLoaded = false;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   constructor(private employeeService: EmployeeService) { }
@@ -22,9 +23,12 @@ export class TableComponent implements AfterViewInit{
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
     this.employeeService.getEmployees().then(employees => {
-      this.employees = employees;
-      this.dataSource = new MatTableDataSource<Employee>(employees);
-      this.dataSource.paginator = this.paginator;
+      this.employeesLoaded= true;
+      setTimeout(()=> {
+        this.employees = employees;
+        this.dataSource = new MatTableDataSource<Employee>(employees);
+        this.dataSource.paginator = this.paginator;
+      }, 10);
 
     }, error => {
       console.log('Error:', error);
