@@ -9,12 +9,8 @@ import {EmployeeService} from '../../services/employee.service';
 
 export class AppComponent implements OnInit{
   title = 'urejevalnik-zaposlenih';
-  constructor(private employeeService: EmployeeService){}
+  constructor(){}
   ngOnInit(){
-    this.employeeService.getEmployees().then(employees => {
-      console.log(employees);
-    }, error => {
-      console.log('Error:', error);
-    });
+
   }
 }

@@ -1,0 +1,17 @@
+table {
+  width: 100%;
+  table-layout: fixed;
+}
+#editIcon {
+  color: darkorange;
+}
+.right {
+  float: right;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
