@@ -4,7 +4,9 @@
 
 
 
+
 <div class="mat-elevation-z8" *ngIf="employeesLoaded === true">
+
   <table mat-table [dataSource]="dataSource"   >
     <!-- Image Column
     <ng-container matColumnDef="image">
@@ -33,10 +35,10 @@
           {{employee.employee_age}} let
         </div>
         <div class="col">
-          <button mat-icon-button id="delete"  class="right">
+          <button mat-icon-button   class="right">
             <mat-icon color="warn">delete</mat-icon>
           </button>
-          <button mat-icon-button id="edit" class="right">
+          <button mat-icon-button (click) = 'openDialog(employee.id)' class="right">
             <mat-icon id="editIcon" >edit</mat-icon>
           </button>
         </div>

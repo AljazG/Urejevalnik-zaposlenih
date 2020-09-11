@@ -3,6 +3,8 @@ import { Employee} from '../../classes/employee';
 import {EmployeeService} from '../../services/employee.service';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
+import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
+import {EditDialogComponent} from '../edit-dialog/edit-dialog.component';
 
 
 @Component({
@@ -18,7 +20,22 @@ export class TableComponent implements AfterViewInit{
   employeesLoaded = false;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
-  constructor(private employeeService: EmployeeService) { }
+  constructor(private employeeService: EmployeeService, private dialog: MatDialog) { }
+
+  openDialog(id: string) {
+
+    const dialogConfig = new MatDialogConfig();
+
+    dialogConfig.disableClose = false;
+    dialogConfig.autoFocus = true;
+    dialogConfig.data = {
+      id: id
+    };
+    dialogConfig.minWidth='350px';
+    dialogConfig.minHeight='400px';
+
+    this.dialog.open(EditDialogComponent , dialogConfig);
+  }
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
