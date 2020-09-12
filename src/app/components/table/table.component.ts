@@ -22,17 +22,34 @@ export class TableComponent implements AfterViewInit{
   @ViewChild(MatPaginator) paginator: MatPaginator;
   constructor(private employeeService: EmployeeService, private dialog: MatDialog) { }
 
-  openDialog(id: string) {
+  openDialog(employee: Employee) {
 
     const dialogConfig = new MatDialogConfig();
 
-    dialogConfig.disableClose = false;
+    dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
     dialogConfig.data = {
-      id: id
+      employee: employee,
+      action: 'edit'
     };
     dialogConfig.minWidth='350px';
-    dialogConfig.minHeight='400px';
+    dialogConfig.minHeight='370px';
+
+    this.dialog.open(EditDialogComponent , dialogConfig);
+  }
+
+  openAlert(employee: Employee) {
+
+    const dialogConfig = new MatDialogConfig();
+
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.data = {
+      employee: employee,
+      action: 'delete'
+    };
+    dialogConfig.minWidth='350px';
+    dialogConfig.minHeight='100px';
 
     this.dialog.open(EditDialogComponent , dialogConfig);
   }

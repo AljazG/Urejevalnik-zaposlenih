@@ -11,6 +11,8 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatInputModule} from '@angular/material/input';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {MatDividerModule} from '@angular/material/divider';
 
 
 import { AppComponent } from './components/app/app.component';
@@ -19,12 +21,18 @@ import { TableComponent } from './components/table/table.component';
 import { EditDialogComponent } from './components/edit-dialog/edit-dialog.component';
 import {MatOptionModule} from '@angular/material/core';
 import {MatSelectModule} from '@angular/material/select';
+import { SnackbarComponent } from './components/snackbar/snackbar.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
+import {RoutingModule} from './routing/routing.module';
+import {RouterModule} from '@angular/router';
 
 @NgModule({
   declarations: [
     AppComponent,
     TableComponent,
-    EditDialogComponent
+    EditDialogComponent,
+    SnackbarComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,
@@ -42,7 +50,10 @@ import {MatSelectModule} from '@angular/material/select';
     MatSelectModule,
     FormsModule,
     ReactiveFormsModule,
-    MatInputModule
+    MatInputModule,
+    MatSnackBarModule,
+    MatDividerModule,
+    RoutingModule
   ],
   providers: [],
   entryComponents: [EditDialogComponent],
