@@ -13,8 +13,8 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatInputModule} from '@angular/material/input';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatDividerModule} from '@angular/material/divider';
-
-
+import {MatTooltipModule} from '@angular/material/tooltip';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 import { AppComponent } from './components/app/app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TableComponent } from './components/table/table.component';
@@ -53,7 +53,9 @@ import {RouterModule} from '@angular/router';
     MatInputModule,
     MatSnackBarModule,
     MatDividerModule,
-    RoutingModule
+    MatTooltipModule,
+    RoutingModule,
+    MatProgressBarModule
   ],
   providers: [],
   entryComponents: [EditDialogComponent],

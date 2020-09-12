@@ -35,7 +35,21 @@ export class TableComponent implements AfterViewInit{
     dialogConfig.minWidth='350px';
     dialogConfig.minHeight='370px';
 
-    this.dialog.open(EditDialogComponent , dialogConfig);
+    const dialogRef = this.dialog.open(EditDialogComponent , dialogConfig);
+
+    dialogRef.afterClosed().subscribe(data => {
+      console.log(data);
+      if (data.action === 'update') {
+        for (let i = 0;  i < this.employees.length; i++) {
+          if(this.employees[i].id == data.employee.id) {
+            this.employees[i] = data.employee;
+            break;
+          }
+        }
+        this.dataSource = new MatTableDataSource<Employee>(this.employees);
+        this.dataSource.paginator = this.paginator;
+      }
+    });
   }
 
   openAlert(employee: Employee) {
@@ -48,10 +62,28 @@ export class TableComponent implements AfterViewInit{
       employee: employee,
       action: 'delete'
     };
-    dialogConfig.minWidth='350px';
-    dialogConfig.minHeight='100px';
+    dialogConfig.minWidth='300px';
+    dialogConfig.minHeight='160px';
 
-    this.dialog.open(EditDialogComponent , dialogConfig);
+    const dialogRef = this.dialog.open(EditDialogComponent , dialogConfig);
+    dialogRef.afterClosed().subscribe(data => {
+      console.log(data);
+      if (data.action === 'deleted') {
+        let emp   = new Array<Employee>(this.employees.length-1);
+        let j = 0;
+        for (let i = 0;  i < this.employees.length; i++) {
+          if(this.employees[i].id === data.employee.id) {
+            continue;
+          }
+         emp[j] = this.employees[i];
+         j++;
+        }
+        this.employees = emp;
+        this.dataSource = new MatTableDataSource<Employee>(this.employees);
+        this.dataSource.paginator = this.paginator;
+      }
+    });
+
   }
 
   openNewEmployeeWindow() {
@@ -71,10 +103,19 @@ export class TableComponent implements AfterViewInit{
       }
     };
     dialogConfig.minWidth='350px';
-    dialogConfig.minHeight='370px'
+    dialogConfig.minHeight='370px';
+    const dialogRef = this.dialog.open(EditDialogComponent , dialogConfig);
+    dialogRef.afterClosed().subscribe(data => {
+      console.log(data);
+      if (data.action === 'added') {
+        this.employees[this.employees.length] = data.employee;
+        this.dataSource = new MatTableDataSource<Employee>(this.employees);
+        this.dataSource.paginator = this.paginator;
+      }
+    });
 
-    this.dialog.open(EditDialogComponent , dialogConfig);
   }
+
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;

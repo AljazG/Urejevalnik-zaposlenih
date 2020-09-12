@@ -1,3 +1,4 @@
+<!--- EDIT -->
 <div *ngIf="data.action == 'edit'">
   <h2 mat-dialog-title class="text-center">Posodobite zaposlenega</h2>
 
@@ -26,16 +27,16 @@
       <mat-icon matSuffix>euro_symbol</mat-icon>
     </mat-form-field>
     <br>
-
-
+    <mat-progress-bar *ngIf="spinner" mode="indeterminate"></mat-progress-bar>
   </mat-dialog-content>
 
   <mat-dialog-actions align="end">
-    <button mat-stroked-button  [mat-dialog-close]="true" color="accent" >Zapri</button>
-    <button mat-raised-button color="primary"  [mat-dialog-close]="true"  (click) ="urediZaposlenega()">Posodobi</button>
+    <button mat-stroked-button  [mat-dialog-close]="{action: 'closed'}" color="accent" >Zapri</button>
+    <button mat-raised-button color="primary"  (click) ="urediZaposlenega()">Posodobi</button>
   </mat-dialog-actions>
 </div>
 
+<!-- CREATE -->
 <div *ngIf="data.action == 'create'">
   <h2 mat-dialog-title class="text-center">Dodajte zaposlenega</h2>
 
@@ -64,23 +65,35 @@
       <mat-icon matSuffix>euro_symbol</mat-icon>
     </mat-form-field>
     <br>
-
-
+    <mat-progress-bar *ngIf="spinner" mode="indeterminate"></mat-progress-bar>
   </mat-dialog-content>
 
   <mat-dialog-actions align="end">
-    <button mat-stroked-button  [mat-dialog-close]="true" color="accent" >Zapri</button>
-    <button mat-raised-button color="primary"  [mat-dialog-close]="true"  (click) ="dodajZaposlenega()">Dodaj</button>
+    <button mat-stroked-button  [mat-dialog-close]="{action: 'closed'}" color="accent" >Zapri</button>
+    <button mat-raised-button color="primary"  (click) ="dodajZaposlenega()">Dodaj</button>
   </mat-dialog-actions>
 </div>
 
+<!-- DELETE -->
 <div *ngIf="data.action == 'delete'" >
   <h2 mat-dialog-title style="text-align: center">Ste prepričani, da želite izbrisati uporabnika?</h2>
-  <mat-dialog-actions align="center">
-    <button mat-stroked-button  [mat-dialog-close]="true" color="accent" >Prekliči</button>
-    <button mat-raised-button color="primary"  [mat-dialog-close]="true"  (click) ="izbrisiUporabnika()">Izbriši</button>
-  </mat-dialog-actions>
+  <div *ngIf="spinner">
+    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+    <mat-dialog-actions align="center" class="mt-4">
+      <button mat-stroked-button  [mat-dialog-close]="{action: 'closed'}" color="accent" >Prekliči</button>
+      <button mat-raised-button color="primary"   (click) ="izbrisiUporabnika()">Izbriši</button>
+    </mat-dialog-actions>
+  </div>
+  <div *ngIf="!spinner">
+    <mat-dialog-actions align="center" style="margin-top: 44px">
+      <button mat-stroked-button  [mat-dialog-close]="{action: 'closed'}" color="accent" >Prekliči</button>
+      <button mat-raised-button color="primary"   (click) ="izbrisiUporabnika()">Izbriši</button>
+    </mat-dialog-actions>
+  </div>
+
 </div>
+
+
 
 
 

@@ -14,5 +14,15 @@ table {
   align-items: center;
 }
 
+.mat-header-row {
+  background-color: #eeeeee;
+}
+
+.mat-header-cell {
+  color: black;
+  font-size: unset;
+}
+
+
 
 
