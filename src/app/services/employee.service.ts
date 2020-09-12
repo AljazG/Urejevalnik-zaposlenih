@@ -40,9 +40,17 @@ export class EmployeeService {
 
   public updateEmployee(id, employee: Employee ): Promise<any> {
     const url = `${this.apiUrl}/update/${id}`;
-    const headers = new HttpHeaders({'Content-Type':'application/json; charset=utf-8'});
     return this.http
-      .put(url,employee,{ headers: headers })
+      .put(url, employee)
+      .toPromise()
+      .then(odgovor => odgovor as any)
+      .catch(this.catchError);
+  }
+
+  public createEmployee( employee: Employee ): Promise<any> {
+    const url = `${this.apiUrl}/create`;
+    return this.http
+      .post(url, employee)
       .toPromise()
       .then(odgovor => odgovor as any)
       .catch(this.catchError);

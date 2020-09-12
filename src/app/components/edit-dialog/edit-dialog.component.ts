@@ -24,7 +24,7 @@ export class EditDialogComponent implements AfterViewInit {
   age = this.data.employee.employee_age;
   salary = this.data.employee.employee_salary;
 
-  urediUporabnika() {
+  urediZaposlenega() {
     this.employeeService.updateEmployee(this.data.employee.id, {
       id: this.data.employee.id,
       employee_age: this.age,
@@ -37,6 +37,23 @@ export class EditDialogComponent implements AfterViewInit {
       },
       error => {
         this.message = 'Prišlo je do napake pri posodabljanju :(';
+        this.openSnackBar(this.message);
+      });
+  }
+
+  dodajZaposlenega() {
+    this.employeeService.createEmployee( {
+      id: this.data.employee.id,
+      employee_age: this.age,
+      employee_name: this.name + ' ' + this.surname,
+      employee_salary: this.salary,
+      profile_image: ''
+    }).then(response => {
+        this.message = 'Zaposleni uspešno dodan!';
+        this.openSnackBar(this.message);
+      },
+      error => {
+        this.message = 'Prišlo je do napake pri dodajanju zaposlenega :(';
         this.openSnackBar(this.message);
       });
   }

@@ -9,10 +9,10 @@
 </div>
 <div class="row"  class="mt-4" *ngIf="employeesLoaded === true">
   <div class="col">
-    <button mat-mini-fab color="accent" class="mb-3 d-inline" >
+    <button mat-mini-fab color="accent" class="mb-3 d-inline" (click) = "openNewEmployeeWindow()">
       <mat-icon>add</mat-icon>
     </button>
-    <a mat-button  color="accent" >Dodaj vnos</a>
+    <a mat-button  color="accent" (click) = "openNewEmployeeWindow()">Dodaj vnos</a>
   </div>
 
 

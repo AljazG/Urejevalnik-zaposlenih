@@ -54,6 +54,28 @@ export class TableComponent implements AfterViewInit{
     this.dialog.open(EditDialogComponent , dialogConfig);
   }
 
+  openNewEmployeeWindow() {
+
+    const dialogConfig = new MatDialogConfig();
+
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.data = {
+      action: 'create',
+      employee: {
+        id: '',
+        employee_name: '',
+        employee_age: '',
+        employee_salary: '',
+        employee_image: ''
+      }
+    };
+    dialogConfig.minWidth='350px';
+    dialogConfig.minHeight='370px'
+
+    this.dialog.open(EditDialogComponent , dialogConfig);
+  }
+
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
     this.employeeService.getEmployees().then(employees => {
