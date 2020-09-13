@@ -2,26 +2,19 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.1.0.
 
-## Development server
+## Nastavitev razvojnega okolja
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Ko klonirate repozitorij se prestavite v novo mapo `<ime-repozitorija>` in poskrbite za namestitev potrebnih knjižnic:
 
-## Code scaffolding
+```
+$ cd <ime-repozitorija>
+$ npm install
+```
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Zagon razvojnega okolja
 
-## Build
+Zaženite razvojni strežnik s z ukazom `ng serve`. Aplikacija bo dostopna na naslovu `http://localhost:4200/`.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+## CORS omejitve
 
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+Ker sem pri razvoju uporabljal zunanji API, je za delovanje PUT in POST metod potreben vtičnik, ki nam omogoči da zaobidemo CORS omejitve. Za brskalnik chrome vredu deluje https://chrome.google.com/webstore/detail/cors-unblock/lfhmikememgdcahcdlaciloancbhjino.
