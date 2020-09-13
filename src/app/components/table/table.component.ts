@@ -1,4 +1,4 @@
-import {Component, AfterViewInit, ViewChild} from '@angular/core';
+import {Component, AfterViewInit, ViewChild, OnInit} from '@angular/core';
 import { Employee} from '../../classes/employee';
 import {EmployeeService} from '../../services/employee.service';
 import {MatPaginator} from '@angular/material/paginator';
@@ -12,11 +12,11 @@ import {EditDialogComponent} from '../edit-dialog/edit-dialog.component';
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.css']
 })
-export class TableComponent implements AfterViewInit{
+export class TableComponent implements AfterViewInit, OnInit{
 
   displayedColumns: string[] = [ 'name', 'salary', 'age'];
   employees: Employee[];
-  dataSource = new MatTableDataSource<Employee>([]);
+  dataSource = new MatTableDataSource<Employee>();
   employeesLoaded = false;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -48,10 +48,10 @@ export class TableComponent implements AfterViewInit{
         }
         this.dataSource = new MatTableDataSource<Employee>(this.employees);
         this.dataSource.paginator = this.paginator;
+
       }
     });
   }
-
   openAlert(employee: Employee) {
 
     const dialogConfig = new MatDialogConfig();
@@ -115,21 +115,19 @@ export class TableComponent implements AfterViewInit{
     });
 
   }
-
-
-  ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
+  ngOnInit(){
     this.employeeService.getEmployees().then(employees => {
-      this.employeesLoaded= true;
-      setTimeout(()=> {
-        this.employees = employees;
-        this.dataSource = new MatTableDataSource<Employee>(employees);
+      this.employeesLoaded = true;
+      this.employees = employees;
+      this.dataSource.data = this.employees;
+
+      setTimeout(() => {
         this.dataSource.paginator = this.paginator;
-      }, 10);
+      }, 5);
 
     }, error => {
       console.log('Error:', error);
     });
-
   }
+  ngAfterViewInit() {}
 }

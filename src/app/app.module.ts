@@ -25,6 +25,7 @@ import { SnackbarComponent } from './components/snackbar/snackbar.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import {RoutingModule} from './routing/routing.module';
 import {RouterModule} from '@angular/router';
+import {MatSortModule} from '@angular/material/sort';
 
 @NgModule({
   declarations: [
@@ -55,8 +56,10 @@ import {RouterModule} from '@angular/router';
     MatDividerModule,
     MatTooltipModule,
     RoutingModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    MatSortModule
   ],
+  exports: [MatSortModule],
   providers: [],
   entryComponents: [EditDialogComponent],
   bootstrap: [AppComponent]
