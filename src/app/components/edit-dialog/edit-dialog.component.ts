@@ -111,9 +111,10 @@ export class EditDialogComponent implements AfterViewInit {
 
     this.snackBar.openFromComponent(SnackbarComponent, {
       data: message,
-      duration: 2000,
+      duration: 10000,
       horizontalPosition: 'center',
-      verticalPosition: 'bottom'
+      verticalPosition: 'bottom',
+      panelClass: 'snack'
     });
   }
 

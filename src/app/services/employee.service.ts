@@ -9,7 +9,7 @@ import {Employee} from '../classes/employee';
 export class EmployeeService {
 
   constructor(private http: HttpClient) { }
-  private apiUrl = 'http://dummy.restapiexample.com/api/v1';
+  private apiUrl = 'https://dummy.restapiexample.com/api/v1';
 
   public getEmployees(): Promise<Employee[]> {
     const url = `${this.apiUrl}/employees`;

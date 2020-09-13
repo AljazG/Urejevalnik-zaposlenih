@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "urejevalnik-zaposlenih": {
+      "hosting": {
+        "urejevalnik-zaposlenih": [
+          "urejevalnik-zaposlenih"
+        ]
+      }
+    }
+  }
+}
